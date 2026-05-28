@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NusaLearn - Jelajah Budaya</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div id="app-container">
+        
+        <section id="splash-screen" class="screen active">
+            <div class="center-content">
+                <img src="assets/NusaLearn.png" alt="Logo" class="logo-3d" onerror="this.src='https://placehold.co/150x150?text=NusaLearn'">
+                <h1>NusaLearn</h1>
+                <p>Eksplorasi Budaya & Pahlawan Indonesia</p>
+                <button class="btn-splash" onclick="navTo('home-screen')">Mulai Belajar Sekarang!</button>
+            </div>
+        </section>
+
+        <section id="home-screen" class="screen">
+            <div class="greeting-box">
+                <h2>Halo, Selamat Datang! 👋</h2>
+                <p>Pilih menu di bawah untuk mulai belajar</p>
+            </div>
+            
+            <div class="menu-grid">
+                <button class="menu-card budaya-card" onclick="openCategory('budaya')">
+                    <span class="menu-icon">🎭</span>
+                    <span class="menu-title">Budaya Daerah</span>
+                </button>
+                
+                <button class="menu-card pahlawan-card" onclick="openCategory('pahlawan')">
+                    <span class="menu-icon">🦸‍♂️</span>
+                    <span class="menu-title">Pahlawan Nasional</span>
+                </button>
+                
+                <button class="menu-card kuis-card" onclick="startQuiz()">
+                    <span class="menu-icon">🎮</span>
+                    <span class="menu-title">Kuis Interaktif</span>
+                </button>
+                
+                <button class="menu-card tentang-card" onclick="navTo('tentang-screen')">
+                    <span class="menu-icon">ℹ️</span>
+                    <span class="menu-title">Tentang Aplikasi</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="list-screen" class="screen">
+            <div class="header">
+                <button class="btn-back" onclick="navTo('home-screen')">⬅ Kembali</button>
+                <h2 id="category-title">Daftar Materi</h2>
+            </div>
+            <div class="search-wrap" style="padding: 0 20px;">
+        <input type="text" id="search-input" placeholder="Cari di sini..." oninput="filterContent()">
+    </div>
+
+    <div id="item-list-container" class="item-grid">
+        </div>
+</section>
+
+        <section id="detail-screen" class="screen">
+            <div class="header">
+                <button class="btn-back" onclick="navTo('list-screen')">⬅ Kembali</button>
+                <h2 id="detail-title">Nama Detail</h2>
+            </div>
+            <div class="detail-content">
+                <div class="img-container">
+                    <img id="detail-img" src="" alt="Gambar" class="img-detail" onerror="this.src='https://placehold.co/600x300?text=Gambar'">
+                </div>
+                <div class="detail-text">
+                    <div id="detail-info-text"></div> 
+                    <p id="detail-desc"></p>
+                    
+                    <div id="detail-more"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-screen" class="screen">
+            <div id="quiz-start-view" class="quiz-landing-container">
+                <div class="header" style="position: absolute; top: 20px; left: 20px; z-index: 10;">
+                    <button class="btn-back" onclick="navTo('home-screen')">⬅ Kembali</button>
+                </div>
+                
+                <div class="quiz-hero-section">
+                    <img src="assets/NusaLearn.png" alt="Quiz Hero" class="img-quiz-hero" onerror="this.src='https://placehold.co/600x400?text=Waktunya+Quiz'">
+                    <div class="quiz-hero-overlay"></div>
+                </div>
+
+                <div class="quiz-landing-card">
+                    <h1 class="quiz-title-pop">Waktunya QUIZ! 🚀</h1>
+                    <p class="quiz-subtitle">Uji pengetahuan kamu tentang kebudayaan dan pahlawan kebanggaan Indonesia.</p>
+                    
+                    <div class="quiz-info-badges">
+                        <span class="badge">🧠 10 Soal</span>
+                        <span class="badge">⏱ 15 Detik/Soal</span>
+                    </div>
+
+                    <button class="btn-start-massive" onclick="beginActualQuiz()">Mulai Quiz Sekarang</button>
+                </div>
+            </div>
+
+            <div id="quiz-question-view" style="display: none;">
+                <div class="quiz-header">
+                    <div id="quiz-progress" style="font-size: 1.2rem;">Soal 1 / 10</div>
+                    <div id="quiz-timer">15</div>
+                </div>
+                <div class="question-box">
+                    <p id="question-text" class="question-text" style="margin-bottom: 30px; font-size: 1.3rem; text-align: left;">Memuat soal...</p>
+                    <div id="options-container" class="options-container"></div>
+                </div>
+            </div>
+
+            <div id="quiz-feedback-view" class="center-content" style="display: none;">
+                <img src="assets/NusaLearn.png" alt="Feedback Image" class="img-quiz-header" onerror="this.src='https://placehold.co/600x300?text=NusaLearn'">
+                <h2 id="feedback-status" style="font-size: 2rem; margin: 20px 0;">JAWABAN BENAR! 🎉</h2>
+                <p id="feedback-explanation" style="font-size: 1.1rem; color: #444; margin-bottom: 30px; padding: 0 20px;"></p>
+                <button class="btn-primary" style="background: #900500; padding: 15px 40px;" onclick="nextQuestion()">Lanjut Soal Berikutnya</button>
+            </div>
+        </section>
+
+        <section id="result-screen" class="screen">
+            <div class="center-content">
+                <div class="result-card">
+                    <h2>Hasil Akhir</h2>
+                    <p>Skor Kamu:</p>
+                    <h1 id="final-score">0</h1>
+                    <p id="result-message"></p>
+                    <button class="btn-primary" onclick="navTo('home-screen')">Ke Beranda</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tentang-screen" class="screen">
+            <div class="header">
+                <button class="btn-back" onclick="navTo('home-screen')">⬅ Kembali</button>
+                <h2>Tentang NusaLearn</h2>
+            </div>
+            
+            <div class="tentang-container">
+                <div class="tentang-card-main">
+                    <div class="logo-wrapper">
+                        <img src="assets/Logo_UnivLampung.png" alt="Unila" class="logo-unila" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+                    </div>
+
+                    <h3 class="title-app">Aplikasi NusaLearn</h3>
+                    <p class="subtitle-app">Dibuat untuk memenuhi Proyek Multimedia Pembelajaran Interaktif</p>
+                    
+                    <div class="custom-divider"></div>
+
+                    <div class="section-info">
+                        <span class="label">Disusun Oleh:</span>
+                        <p class="highlight-name">Ibnaty Chalisa Adabina</p>
+                        <p class="npm-text">(2413025061)</p>
+                    </div>
+
+                    <div class="sub-card-info">
+                        <p><strong>Kelas: PTI24 A</strong></p>
+                        <p><strong>Prodi: Pendidikan Teknologi Informasi</strong></p>
+                        <p><strong>Universitas Lampung - 2026</strong></p>
+                    </div>
+
+                    <div class="lecturer-box">
+                        <span class="label">Dosen Pengampu:</span>
+                        <p class="lecturer-name">Dwi Wahyudi, S.Pd., M.Ed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
