@@ -163,7 +163,7 @@ const dataApp = {
             details: [{ title: "Tari Tradisional", content: "Tari Pakarena, Tari Bosara." }, { title: "Rumah Adat", content: "Rumah Tongkonan, Balla Lombpoa." }, { title: "Bahasa Daerah", content: "Bahasa Bugis, Makassar, Toraja." }] 
         },
         { 
-            id: 'sulteng', title: "Sulawesi Tengah", img: "assets/sulteng.jpg", 
+            id: 'sulteng', title: "Sulawesi Tengah", img: "assets/sulteng.jpeg",
             desc: "Membentang di garis Khatulistiwa, Sulawesi Tengah memiliki Taman Nasional Lore Lindu yang menyimpan ratusan patung megalitikum misterius berumur ribuan tahun. Keanekaragaman hayati dan kontur pegunungannya menjadikan wilayah ini kaya akan flora dan fauna endemik.", 
             details: [{ title: "Tari Tradisional", content: "Tari Dero (Tarian Persaudaraan), Tari Lumense." }, { title: "Rumah Adat", content: "Souraja (Banua Oge)." }, { title: "Bahasa Daerah", content: "Bahasa Kaili, Pamona." }] 
         },
