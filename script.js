@@ -310,7 +310,7 @@ const dataApp = {
             fakta: "Belanda baru bisa menangkapnya bukan melalui pertempuran, melainkan lewat kelicikan tipu muslihat dengan mengundangnya untuk berunding di Magelang lalu menangkapnya secara pengecut." 
         },
         { 
-            id: 'kartini', title: "R.A. Kartini", img: "assets/RA-Kartini.jpeg", 
+            id: 'kartini', title: "R.A. Kartini", img: "assets/kartini-baru.jpeg",
             info: "Asal: Jawa Tengah | Lahir: Jepara, 1879", 
             desc: "Pahlawan emansipasi yang pemikirannya melampaui zamannya. Meski dikurung tradisi pingitan keraton, ia gigih menulis surat kepada sahabat-sahabat penanya di Belanda, memprotes diskriminasi pendidikan dan pernikahan paksa bagi perempuan pribumi.", 
             fakta: "Kumpulan surat-suratnya yang tajam namun puitis dibukukan dengan judul 'Door Duisternis tot Licht' (Habis Gelap Terbitlah Terang) yang mengguncang pemikir di Eropa." 
